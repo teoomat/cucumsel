@@ -1,4 +1,4 @@
-/*package common;
+package common;
 
 public class Calculator {
 
@@ -26,4 +26,3 @@ public class Calculator {
         return result;
     }
 }
-*/
