@@ -10,25 +10,25 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class StepDefinitions {
 
-    Calculator cal = new Calculator();
     private WebDriver driver;
 
-    @Before
-    public void openChrome() throws InterruptedException {
 
+    @Given("I have visited calculator page")
+    public void i_have_visited_calculator_page() {
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Selenium\\chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://www.marshu.com/articles/calculate-addition-calculator-add-two-numbers.php");
     }
 
+
     @Given("I have entered {int} into the calculator")
     public void i_have_entered_into_the_calculator(int numb1) {
-        cal.setFirstNumber(numb1);
 
         WebElement searchBox = driver.findElement(By.name("n01"));
         searchBox.sendKeys(String.valueOf(numb1));
@@ -36,7 +36,6 @@ public class StepDefinitions {
 
     @Given("I have also entered {int} into the calculator")
     public void i_have_also_entered_into_the_calculator(int numb2) {
-        cal.setSecondNumber(numb2);
 
 
         WebElement searchBox1 = driver.findElement(By.name("n02"));
@@ -44,7 +43,7 @@ public class StepDefinitions {
     }
 
     @When("I press add")
-    public void i_press_add() throws InterruptedException {
+    public void i_press_add() {
 
         WebElement button = driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/form/p[4]/input"));
         button.click();
@@ -55,7 +54,7 @@ public class StepDefinitions {
 
         WebElement searchBox2 = driver.findElement(By.name("answer"));
         boolean svar = searchBox2.isDisplayed();
-        assertEquals(svar, true);
+        assertTrue(svar);
     }
 
 }
